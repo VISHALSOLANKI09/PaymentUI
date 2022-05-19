@@ -1,0 +1,18 @@
+.userName {
+    border-bottom: 2px solid black;
+}
+
+svg {
+    margin-top: 8px;
+}
+
+.dp {
+    width: 60px;
+    background-color: aquamarine;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    margin: 0px 9px;
+    border-radius: 40px;
+    font-size: 22px;
+}

@@ -1,0 +1,61 @@
+<!-- Transactions -->
+<div class="container">
+    <div *ngFor="let value of data" class="transactions">
+        <div class="dot mt-4" *ngIf="!dates(value.Date)">
+            <span class="dot1">{{ value.Date }}</span>
+          </div>
+            <!-- Amount Sent -->
+        <div *ngIf="value.Type === 'pay'"  class="row">
+            <div class="col-lg-4 col-md-12"></div>
+            <div class="col-lg-8 col-md-12">
+                <div class="sent d-flex">
+                    <div class="amount d-flex flex-column">
+                        <p style="font-size: 40px; margin-bottom: 0;">{{ value.Amount }}</p>
+                        <div *ngIf="!value.isRequested">
+                            <p style="font-size: 10px; padding-left: 10px; margin-top: 2px; margin-bottom: 1px; font-weight: bold;">Transaction ID</p>
+                            <p style="font-size: 10px; padding-left: 10px; font-weight: bold;">{{value.Id}}</p>
+                        </div>
+                        <div *ngIf="value.isRequested">
+                            <button class="btn btn-outline-dark px-5 cancel">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div style="padding-left: 70px; margin-top: 30px;">
+                            <span style="margin-right: 0;">{{ value.isRequested ? "🔗" : "✔️" }}</span> You <span>{{ value.isRequested ? "requested" : "Paid" }}</span>
+                        </div>
+                        <img style="margin-left: auto; margin-top: 0;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADS0lEQVR4nO3bTWtdVRTG8Z+2plUzUGtFa52o2Ah1YlsVVJQKgkjU+oF8VzordSL9BKJgP4FYRScSrIJC60tSX8CSG2tqrKADjYOd0MvpTbrvOfvlJrkPrEkI567/s/c+5+yz12KsscbayrqmwG9sxwE8hinsw17chEks4y9cxC/4FmfwGU7j3wI5JtcEjuAklgTINrGI9zGN64oStNRuvIHftIdeK3p4GbcUoxlCkziKS9KDN2MJr+L6ImQRegE/yw/ejDk8W4BvTe3EceXBm3ECOzKzXqG9+Kpj4iljBrdnJe7TPfghM1CbOIf7MnIjPMd7lUHXi/O4Nxf8nYLLtSGvFrO4IzX8TqO15q8WnwsvY8l0YgSgho1jqeCPdEzkSRzCfGED/sMzXeEndX/JObRyrf0VTJjV8Y3xaIIk5lfga5nwSlv4XfgzURI9PLBy3Sn8WtCAP3BzGwPeTJxITRNeGhZ+Qp4tba3lMC98mInWixmTqTUThto5nsycTI2Z8G4s/HbhxpE7odIz4QKujTHgkQLwtUx4sAk7yJFHY1xKpN34UFgGZ/G0YEouPd78wyAD7s+YwCDdho+EmfANnhC2tTk0FfNPnyq3BEovh1MxBtTc8+d+OszGGHChogG5Z0LU/eWfygY0Z8LBhNf9uwkb9Vzcahq1JXA+4bUXYgzYzDfBuRgDRuUxmHLkV+PjJuyge8DZGJcSawFP4WsB/pQ8Jz1XsA0y4EyGH15PPRwW4PfjE/mOuaIG92Gba9r3x4EYA2pth3PDL2JbjAHwQeZkanwQeS8Wnu6HIaM08qsxPYwBm+2jaE+LIqvXMyRRY+SXtTwcyXkwUhL+Em5tYwC8lSCB2kdjr7WFhxvxU8cEDlaEn5OgnO75jkkcxkMV4JclLKN7p0LyXePtVPCEEpnTIwAVGzMy1A7usTGKpOZkKJJa1T511nJszCtQK3g3vq8MOijOCQNURHvwRWagYWJGxmm/lnbYwsXS/ZrGj8qDVy+X79cNQqdIqr3DerEkvN6OTMNEv3YJyS1ID94TdnUj2TLT1ASeExqeFrWH/l34kpOtaapE29w2oTKjv23uLpfb5ghb1otCVep3LrfNfWmDts2NNdZYG0P/A1BwQ6nEZi3yAAAAAElFTkSuQmCC"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 20px;"></div>
+
+
+        <!-- Amount Recieved -->
+        <div *ngIf="value.Type === 'collect'" class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="sent d-flex">
+                    <div class="amount d-flex flex-column">
+                        <p style="font-size: 40px; margin-bottom: 0;">{{ value.Amount }}</p>
+                        <div *ngIf="!value.isRequested">
+                            <p style="font-size: 10px; padding-left: 10px; margin-top: 2px; margin-bottom: 1px; font-weight: bold;">Transaction ID</p>
+                            <p style="font-size: 10px; padding-left: 10px; font-weight: bold;">{{value.Id}}</p>
+                        </div>
+                        <div *ngIf="value.isRequested" class="d-flex">
+                            <button class="btn btn-outline-dark px-2 cancel" style="margin-right: 20px;">Pay</button>
+                            <button class="btn btn-outline-dark px-2 cancel">Decline</button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column margin-right: 20px;">
+                        <div style="padding-left: 50px; margin-top: 40px;">
+                            <span style="margin-right: 0;">{{ value.isRequested ? "🔗" : "✔️" }}</span>{{ value.isRequested ? " Request " : " You " }}<span>Recieved</span>
+                        </div>
+                        <img style="margin-left: auto; margin-top: 0;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADS0lEQVR4nO3bTWtdVRTG8Z+2plUzUGtFa52o2Ah1YlsVVJQKgkjU+oF8VzordSL9BKJgP4FYRScSrIJC60tSX8CSG2tqrKADjYOd0MvpTbrvOfvlJrkPrEkI567/s/c+5+yz12KsscbayrqmwG9sxwE8hinsw17chEks4y9cxC/4FmfwGU7j3wI5JtcEjuAklgTINrGI9zGN64oStNRuvIHftIdeK3p4GbcUoxlCkziKS9KDN2MJr+L6ImQRegE/yw/ejDk8W4BvTe3EceXBm3ECOzKzXqG9+Kpj4iljBrdnJe7TPfghM1CbOIf7MnIjPMd7lUHXi/O4Nxf8nYLLtSGvFrO4IzX8TqO15q8WnwsvY8l0YgSgho1jqeCPdEzkSRzCfGED/sMzXeEndX/JObRyrf0VTJjV8Y3xaIIk5lfga5nwSlv4XfgzURI9PLBy3Sn8WtCAP3BzGwPeTJxITRNeGhZ+Qp4tba3lMC98mInWixmTqTUThto5nsycTI2Z8G4s/HbhxpE7odIz4QKujTHgkQLwtUx4sAk7yJFHY1xKpN34UFgGZ/G0YEouPd78wyAD7s+YwCDdho+EmfANnhC2tTk0FfNPnyq3BEovh1MxBtTc8+d+OszGGHChogG5Z0LU/eWfygY0Z8LBhNf9uwkb9Vzcahq1JXA+4bUXYgzYzDfBuRgDRuUxmHLkV+PjJuyge8DZGJcSawFP4WsB/pQ8Jz1XsA0y4EyGH15PPRwW4PfjE/mOuaIG92Gba9r3x4EYA2pth3PDL2JbjAHwQeZkanwQeS8Wnu6HIaM08qsxPYwBm+2jaE+LIqvXMyRRY+SXtTwcyXkwUhL+Em5tYwC8lSCB2kdjr7WFhxvxU8cEDlaEn5OgnO75jkkcxkMV4JclLKN7p0LyXePtVPCEEpnTIwAVGzMy1A7usTGKpOZkKJJa1T511nJszCtQK3g3vq8MOijOCQNURHvwRWagYWJGxmm/lnbYwsXS/ZrGj8qDVy+X79cNQqdIqr3DerEkvN6OTMNEv3YJyS1ID94TdnUj2TLT1ASeExqeFrWH/l34kpOtaapE29w2oTKjv23uLpfb5ghb1otCVep3LrfNfWmDts2NNdZYG0P/A1BwQ6nEZi3yAAAAAElFTkSuQmCC"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12"></div>
+        </div>
+        <div style="margin: 20px;"></div>
+    </div>
+</div>
